@@ -1,7 +1,7 @@
 package s4.spring.td2.models;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 @Entity
+@Table(name = "Groupe")
 public class Group {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,11 +23,11 @@ public class Group {
 	@ManyToOne
 	private Organization organization;
 	@ManyToMany
-	@JoinTable(name = "user_has_group")
-	private List<User> users;
+	@JoinTable(name = "user_group")
+	private Set<User> users;
 	
 	public Group() {
-		users=new ArrayList<>();
+		users=new HashSet<>();
 	}
 	
 	public int getId() {
@@ -58,10 +60,10 @@ public class Group {
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
 	}
-	public List<User> getUsers() {
+	public Set<User> getUsers() {
 		return users;
 	}
-	public void setUsers(List<User> users) {
+	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
 }

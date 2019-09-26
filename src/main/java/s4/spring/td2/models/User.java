@@ -1,7 +1,9 @@
 package s4.spring.td2.models;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,12 +23,12 @@ public class User {
 	private String password;
 	private boolean suspended;
 	@ManyToMany(mappedBy = "users")
-	private List<Group> groups;
+	private Set<Group> groups;
 	@ManyToOne
 	private Organization organization;
 	
 	public User() {
-		groups=new ArrayList<>();
+		groups=new HashSet<>();
 	}
 	public int getId() {
 		return id;
@@ -64,10 +66,10 @@ public class User {
 	public void setSuspended(boolean suspended) {
 		this.suspended = suspended;
 	}
-	public List<Group> getGroups() {
+	public Set<Group> getGroups() {
 		return groups;
 	}
-	public void setGroups(List<Group> groups) {
+	public void setGroups(Set<Group> groups) {
 		this.groups = groups;
 	}
 	public Organization getOrganization() {
